@@ -4,3 +4,45 @@
 *:after {
   box-sizing: border-box;
 }
+/* Fonts */
+body{
+  font-family: Verdana, sans-serif;
+  margin: 1em 0 1em 0;
+}
+
+/* Header */
+header{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.5em;
+
+}
+
+.siteName {
+  font-weight: bold;
+  font-size: 2.5rem;
+  padding-left: .2em;
+}
+
+a, a:link, a:visited, a:active{
+  text-decoration: none;
+  color: black;
+}
+
+header div{
+  font-weight: lighter;
+  font-size: 1rem;
+  padding-right: .5em;
+}
+
+nav ul{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: black;
+  list-style-type: none;
+  padding: 1em 0 1em 0;
+}
+
+nav ul li {
+  color: white;
+}
