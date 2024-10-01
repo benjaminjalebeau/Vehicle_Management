@@ -72,9 +72,8 @@ img{
 }
 /* index */
 main{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+
+
   padding: 0 1em 0 1em;
   background-color: white;
 }
@@ -163,6 +162,75 @@ h1{
 footer{
   padding: 1em 0 0 1em;
   font-size: .8em;
+}
+
+
+/* Classification View*/
+#classificationGrid{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  
+}
+
+#inv-display{
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 23px;
+  padding: 0;
+  justify-content: center;
+}
+
+#inv-display li{
+  width: 250px;
+
+}
+
+#inv-display li{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 6px;
+}
+
+#inv-display li a{
+  height: 100%;
+  text-align: center;
+ 
+}
+
+#inv-display li a img{
+  object-fit: contain;
+  padding-top: .3em;
+  height: 130px;
+}
+
+.namePrice h2{
+  font-size: .9em;
+  text-align: center;
+  margin: .5em auto .5em auto;
+}
+
+.namePrice hr{
+  margin: 0;
+}
+
+.namePrice span{
+  font-size: .9em;
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 1em;
+}
+
+/* Error Message*/
+#errorMessage {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 @media only screen and (min-width: 1028px) {
