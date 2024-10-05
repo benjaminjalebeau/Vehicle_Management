@@ -72,7 +72,7 @@ Util.buildInventoryGrid = async function(data){
       + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span></h3>'
     grid += '<h3>Description: <span>' + vehicle.inv_description + '</span></h3>'
     grid += '<h3>Color: <span>' + vehicle.inv_color + '</span></h3>'
-    grid += '<h3>Miles: <span>' + vehicle.inv_miles + '</span></h3></div>'
+    grid += '<h3>Miles: <span>' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</span></h3></div>'
   } else { 
     grid += '<p class="notice">Sorry, this vehicle could be found.</p>'
   }
