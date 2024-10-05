@@ -62,8 +62,16 @@ nav ul{
   padding: 1em 0 1em 0;
 }
 
-nav ul li {
+nav ul li a{
   color: white;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+nav ul li a:hover{
+  color: darkcyan;
+  text-decoration: underline;
+  font-weight: bolder;
 }
 
 img{
@@ -182,12 +190,9 @@ footer{
   justify-content: center;
 }
 
+
 #inv-display li{
   width: 250px;
-
-}
-
-#inv-display li{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -196,6 +201,11 @@ footer{
   border-width: 2px;
   border-color: black;
   border-radius: 6px;
+}
+
+#inv-display li:hover{
+  border-color: darkcyan;
+  border-width: 5px;
 }
 
 #inv-display li a{
@@ -227,6 +237,31 @@ footer{
   padding-bottom: 1em;
 }
 
+/*Inventory View*/
+#inventory-view {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+#inventory-view img{
+  display: block;
+  margin: auto;
+  padding: 1em;
+}
+
+#inventory-view h3{
+  padding: .3em 1.5em;
+}
+
+#inventory-view h3:nth-child(odd){
+  background-color: lightgray;
+  border-radius: 10px;
+}
+
+#inventory-view span{
+  font-weight: 400;
+  font-size: .9em;
+}
+
 /* Error Message*/
 #errorMessage {
   grid-column-start: 1;
@@ -256,5 +291,11 @@ footer{
   }
   .upgradeGrid{
     width: 400px;
+  }
+
+  /*Inventory View*/
+  #inventory-view img{
+    
+
   }
 }
