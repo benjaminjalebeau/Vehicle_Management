@@ -205,7 +205,7 @@ footer{
 
 #inv-display li:hover{
   border-color: darkcyan;
-  border-width: 5px;
+  border-width: 3px;
 }
 
 #inv-display li a{
@@ -242,6 +242,21 @@ footer{
   grid-column-start: 1;
   grid-column-end: 3;
 }
+
+#inventory-view h1{
+  background-color: rgb(1, 58, 58);
+  color:white;
+  text-shadow: black;
+  padding: 1em;
+  border-radius: 3px;
+}
+
+#inventory-view h2{
+  font-size: 1.2em;
+  padding: .3em .5em;
+  text-align: center;
+}
+
 #inventory-view img{
   display: block;
   margin: auto;
@@ -249,7 +264,7 @@ footer{
 }
 
 #inventory-view h3{
-  padding: .3em 1.5em;
+  padding: .3em .5em;
 }
 
 #inventory-view h3:nth-child(odd){
@@ -294,8 +309,25 @@ footer{
   }
 
   /*Inventory View*/
-  #inventory-view img{
-    
-
+  #inventory-view{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
+
+  #inventory-view h1{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  #inventory-view img{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: 0;
+  }
+
+  #inventory-view #vehicle-details{
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
 }
