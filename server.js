@@ -48,7 +48,7 @@ app.use(async (err, req, res, next) => {
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
   if(err.status == 404){ message = err.message} else {message = 'Why didnt it work, it was supposed to work...'}
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title: err.status || '500 Server Error',
     message,
     nav
   })

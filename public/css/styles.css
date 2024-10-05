@@ -180,6 +180,13 @@ footer{
   
 }
 
+#classificationGrid h1{
+  background-color: rgb(1, 58, 58);
+  color:white;
+  padding: 1em;
+  border-radius: 3px;
+}
+
 #inv-display{
   width: 100%;
   list-style-type: none;
@@ -189,7 +196,6 @@ footer{
   padding: 0;
   justify-content: center;
 }
-
 
 #inv-display li{
   width: 250px;
@@ -280,6 +286,10 @@ footer{
 #errorMessage {
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+.notice {
+  padding: 1em;
 }
 
 @media only screen and (min-width: 1028px) {
