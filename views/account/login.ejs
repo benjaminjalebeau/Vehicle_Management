@@ -1,0 +1,27 @@
+<div class="baseView">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+        <% } else {
+        res.redirect('/')
+        } %>
+
+    <%- messages() %>
+    <div class="formBox" id="loginBox">
+        <form action="">
+            <label for="account_email">Email:</label><br>
+            <input class="inputBox" type="email" id="account_email" name="account_email" required><br>
+            <label for="account_password">Password:</label><br>
+            <input class="inputBox" type="password" id="account_password" name="account_password" 
+            title="Password must contain one number, one uppercase letter, one special character,
+            and it must be at least 12 characters long." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required><br>
+            <span id="passwordReq">Password must be at least 12 characters, one must be a number, one must be a lowercase letter,
+                 one must be a capital letter, and one must be a non-alphanumeric character.</span>
+            <div id="buttonHolder">
+                <input class="formButton" type="submit" value="LOGIN">
+                <p>No Account? <a href="/account/register">Sign-Up</a></p>
+            </div>
+        </form>
+        
+    </div>
+
+</div>

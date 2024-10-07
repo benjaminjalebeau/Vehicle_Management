@@ -292,6 +292,84 @@ footer{
   padding: 1em;
 }
 
+/*Login View*/
+.baseView{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: auto;
+  padding: 0 1em;
+  text-align: center;
+}
+
+.formBox {
+  text-align: left;
+  background-color: rgb(44, 63, 82);
+  padding: 1em;
+  width: 400px;
+  border-style: double;
+  border-width: 10px;
+  border-color: lightblue;
+}
+
+.formBox form>*{
+  margin: .5em 0 1em 0;
+}
+
+.formBox label{
+  color: white;
+}
+
+.formBox input{
+  border-style: none;
+}
+
+.formBox .inputBox{
+  border-radius: 6px;
+  width: 100%;
+  padding: .3em .1em;
+  font-size: 1.1em;
+}
+
+#buttonHolder{
+  text-align: center;
+}
+#buttonHolder p{
+  color: white;
+}
+#buttonHolder p a{
+  color: white;
+}
+
+#buttonHolder p a:hover{
+  color: cyan;
+}
+
+.formButton {
+  border-radius: 15px;
+  padding: .5em 1.7em;
+  width: 100px;
+}
+
+.formButton:hover {
+  background-color: cyan;
+}
+
+.formButton:active {
+  background-color: rgb(194, 194, 194);
+  font-weight: bolder;
+}
+
+#passwordReq{
+  color: white;
+}
+
+
+/*For flash messages*/
+.notice {
+  color: red;
+  list-style: none;
+}
+
 @media only screen and (min-width: 1028px) {
   #wrapper{
     width: 900px;
