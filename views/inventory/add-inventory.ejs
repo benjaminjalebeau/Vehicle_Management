@@ -1,0 +1,46 @@
+<div class="baseView">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+        <% } else {
+        res.redirect('/')
+        } %>
+
+    <div class="formBox" id="addVehicleBox">
+        <form action="/inv/add-inventory" method="post">
+            <label for="classification_id">Classification</label><br>
+            <%- select %><br>
+            
+            <label for="inv_make">Vehicle Make</label><br>
+            <input class="inputBox" type="text" name="inv_make" id="inv_make" required value="<%= locals.inv_make %>"><br>
+            
+            <label for="inv_model">Vehicle Model</label><br>
+            <input class="inputBox" type="text" name="inv_model" id="inv_model" required value="<%= locals.inv_model %>"><br>
+            
+            <label for="inv_year">Vehicle Year</label><br>
+            <input class="inputBox" type="number" name="inv_year" id="inv_year" required size="4" maxlength="4" value="<%= locals.inv_year %>"><br>
+            
+            <label for="inv_description">Vehicle Description</label><br>
+            <textarea class="inputBox" type="text" name="inv_description" id="inv_description" rows="4" required value="<%= locals.inv_description %>"></textarea>
+            
+            <label for="inv_price">Vehicle Price</label><br>
+            <input class="inputBox" type="number" name="inv_price" id="inv_price" required minlength="1" value="<%= locals.inv_price %>"><br>
+            
+            <label for="inv_miles">Vehicle Miles</label><br>
+            <input class="inputBox" type="number" name="inv_miles" id="inv_miles" required minlength="1" value="<%= locals.inv_miles %>"><br>
+            
+            <label for="inv_color">Vehicle Color</label><br>
+            <input class="inputBox" type="text" name="inv_color" id="inv_color" required value="<%= locals.inv_color %>"><br>
+            
+            <label for="inv_image">File Path to Regular Image</label><br>
+            <input class="inputBox" type="text" name="inv_image" id="inv_image" required value="<%= locals.inv_image %>"><br>
+            
+            <label for="inv_thumbnail">File Path to Thumbnail Image</label><br>
+            <input class="inputBox" type="text" name="inv_thumbnail" id="inv_thumbnail" required value="<%= locals.inv_thumbnail %>"><br>
+            
+            <div id="buttonHolder">
+                <input class="formButton" type="submit" value="Add Vehicle">
+            </div>
+        </form>
+    </div>
+
+</div>

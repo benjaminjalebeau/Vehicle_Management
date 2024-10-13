@@ -1,0 +1,20 @@
+<div class="baseView">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+        <% } else {
+        res.redirect('/')
+        } %>
+
+    <div class="formBox" id="addClassificationBox">
+        <form action="/inv/add-classification" method="post">
+            <label for="classification_name">Classification Name</label><br>
+            <input class="inputBox" type="text" name="classification_name" id="classification_name" required value="<%= locals.classification_name %>"><br>
+            
+            <span class="inputReq">Name must be alphabetic characters only</span>
+            <div id="buttonHolder">
+                <input class="formButton" type="submit" value="Add Classification">
+            </div>
+        </form>
+    </div>
+
+</div>
