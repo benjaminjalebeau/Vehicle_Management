@@ -3,6 +3,40 @@ const utilities = require("../utilities/")
 
 const invCont = {}
 
+/* ***************************
+ *  Build managment inv view
+ * ************************** */
+invCont.buildVehManView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {title: "Vehicle Management", nav, errors: null,})
+}
+
+/* ***************************
+ *  Build management add classifaction view
+ * ************************** */
+invCont.buildAddClassView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add New Classification",
+     nav,
+     errors: null,
+    })
+}
+
+/* ***************************
+ *  Build management add vehicle view
+ * ************************** */
+invCont.buildAddVehView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  let select = await utilities.buildClassificationList()
+  res.render("./inventory/add-inventory", {
+    title: "Add New Vehicle", 
+    nav, 
+    select,
+    errors: null,
+  })
+}
+
 
 /* ***************************
  *  Build inventory by classification view

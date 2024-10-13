@@ -345,9 +345,9 @@ footer{
 }
 
 .formButton {
+  margin-top: 1em;
   border-radius: 15px;
   padding: .5em 1.7em;
-  width: 100px;
 }
 
 .formButton:hover {
@@ -359,7 +359,7 @@ footer{
   font-weight: bolder;
 }
 
-#passwordReq{
+.inputReq{
   color: white;
 }
 
@@ -368,6 +368,36 @@ footer{
 .notice {
   color: red;
   list-style: none;
+}
+
+/*Managment View*/
+#manageView ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+#manageView ul li{
+  background-color: rgb(44, 63, 82);
+  padding: 1em;
+  border-style: double;
+  border-width: 10px;
+  border-color: lightblue;
+  margin: 1em 0;
+}
+
+#manageView ul a{
+  color: white;
+}
+
+#manageView ul a:hover{
+  color: cyan;
+}
+
+#classificationList {
+  border-radius: 6px;
+  width: 100%;
+  padding: .3em .1em;
+  font-size: 1.1em;
 }
 
 @media only screen and (min-width: 1028px) {
