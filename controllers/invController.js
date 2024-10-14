@@ -12,7 +12,7 @@ invCont.buildVehManView = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build management add classifaction view
+ *  Build add classifaction view
  * ************************** */
 invCont.buildAddClassView = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -24,7 +24,7 @@ invCont.buildAddClassView = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build management add vehicle view
+ *  Build  add vehicle view
  * ************************** */
 invCont.buildAddVehView = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -36,6 +36,77 @@ invCont.buildAddVehView = async function (req, res, next) {
     errors: null,
   })
 }
+
+/* ****************************************
+*  Adds the New Classification
+* *************************************** */
+invCont.registerClass = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+
+  const regResult = await invModel.addClass(classification_name)
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Success, you\'ve added the ${classification_name} classification.`
+    )
+    res.status(201).redirect("/inv")
+  } else {
+    req.flash("notice", "Sorry, we were unable to add the classification")
+    res.status(501).render("inventory/management", {
+      title: "Vehicle Management", 
+      nav
+    })
+  }
+}
+
+/* ****************************************
+*  Adds the New Vehicle
+* *************************************** */
+invCont.registerInventory = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { 
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_price,
+    inv_miles,
+    inv_color,
+    inv_image,
+    inv_thumbnail
+   } = req.body
+
+  const regResult = await invModel.addInventory(
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Success, you\'ve added ${inv_year + " " +inv_make + " " +inv_model} to the inventory.`
+    )
+    res.status(201).redirect("/inv")
+  } else {
+    req.flash("notice", "Sorry, we were unable to add the vehicle")
+    res.status(501).render("./inventory/management", {
+      title: "Vehicle Management", 
+      nav
+    })
+  }
+}
+
 
 
 /* ***************************

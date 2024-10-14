@@ -16,7 +16,7 @@ router.post(
     "/add-classification",
     regValidate.classificationRules(),
     regValidate.checkClassData,
-    //utilities.handleErrors(invController.registerClass)
+    utilities.handleErrors(invController.registerClass),
   );
 
 //Post route for adding new vehicles
@@ -24,7 +24,7 @@ router.post(
     "/add-inventory",
     regValidate.inventoryRules(),
     regValidate.checkInventoryData,
-    //utilities.handleErrors(invController.registerInventory)
+    utilities.handleErrors(invController.registerInventory)
   );
 
 // Route to build inventory by classification view
