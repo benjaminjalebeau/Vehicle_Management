@@ -16,7 +16,8 @@ const utilities = require(".")
           .trim()
           .notEmpty()
           .isLength({ min: 1 })
-          .withMessage("Please provide a classification."),
+          .isAlphanumeric()
+          .withMessage("Please provide a classification without symbols."),
       ]
     }
     
@@ -57,6 +58,7 @@ const utilities = require(".")
         .escape()
         .notEmpty()
         .isLength({ min: 4, max: 4})
+        .isNumeric()
         .withMessage("Please enter a 4 digit year for the vehicle"),
     
     
@@ -72,6 +74,7 @@ const utilities = require(".")
         .trim()
         .escape()
         .notEmpty()
+        .isNumeric()
         .isLength({ min: 1})
         .withMessage("Please enter a price for the vehicle"),
     
@@ -80,6 +83,7 @@ const utilities = require(".")
         .trim()
         .escape()
         .notEmpty()
+        .isNumeric()
         .isLength({ min: 1 })
         .withMessage("Please enter the mileage for the vehicle"),
     
@@ -170,6 +174,51 @@ const utilities = require(".")
       }
       next()
     }
+
+
+  /* ******************************
+    * Check data and return errors to edit view
+    * ***************************** */
+  validate.checkUpdateData = async (req, res, next) => {
+    const { 
+      inv_id,
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_price,
+      inv_miles,
+      inv_color,
+      inv_image,
+      inv_thumbnail
+    } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      let select = await utilities.buildClassificationList()
+      res.render("./inventory/edit-inventory", {
+        errors,
+        title: "Edit " + inv_make + " " + inv_model,
+        nav,
+        select,
+        inv_id,
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_price,
+        inv_miles,
+        inv_color,
+        inv_image,
+        inv_thumbnail
+      })
+      return
+    }
+    next()
+  }
     
       
   module.exports = validate
