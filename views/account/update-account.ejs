@@ -13,25 +13,41 @@
       <%  }) %>
        </ul>
       <% } %>
-    <div class="formBox" id="registerBox">
-        <form action="/account/register" method="post">
+    <div class="formBox">
+        <form action="/account/update-account" method="post">
             <label for="account_firstname">First Name</label><br>
             <input class="inputBox" type="text" name="account_firstname" id="account_firstname" required value="<%= locals.account_firstname %>"><br>
             <label for="account_lastname">Last Name</label><br>
             <input class="inputBox" type="text" id="account_lastname" name="account_lastname" required value="<%= locals.account_lastname %>"><br>
             <label for="account_email">Email</label><br>
             <input class="inputBox" type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>"><br>
+            <div id="buttonHolder">
+                <input class="formButton" type="submit" value="Update">
+            </div>
+            <input type="hidden" name="account_id"
+            <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+            <% } %>>
+        </form>
+    </div>
+    <h1>Update Password</h1>
+    <div class="formBox">
+        <form action="/account/update-password" method="post">
+            <p class="inputReq">Notice: Old password will be deleted.</p>
             <label for="account_password">Password</label><br>
             <input class="inputBox" type="password" id="account_password" name="account_password" 
             title="Password must contain one number, one uppercase letter, one special character,
             and it must be at least 12 characters long." pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required><br>
-            <span class="inputReq">Password must be at least 12 characters. Must contain: a number, a lowercase letter,
-                a capital letter, and a special character.</span>
+            <span class="inputReq">New password must be at least 12 characters. Must contain: a number, a lowercase letter,
+            a capital letter, and a special character.</span>
+            
             <div id="buttonHolder">
-                <input class="formButton" type="submit" value="Register">
+                <input class="formButton" type="submit" value="Change Password">
             </div>
+            <input type="hidden" name="account_id"
+            <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+            <% } %>>
         </form>
-        
     </div>
 
+    
 </div>

@@ -1,9 +1,10 @@
-<div class="baseView">
+<div id="accountView">
     <% if (title) { %>
         <h1><%= title %></h1>
         <% } else {
         res.redirect('/')
         } %>
+    <p>You're logged in</p>
 
     <%- messages() %>
     <% if (errors) { %>
@@ -13,4 +14,15 @@
       <%  }) %>
        </ul>
       <% } %>
+      <h2>Welcome <%- accountName %></h2>
+      <a href="/account/update-account">Update Account Information</a>
+
+      <% if (accountType === "Admin" || accountType === "Employee") { %>
+        <h3>Inventory Management</h3>
+        <a href="/inv">Manage Inventory</a>
+      <% } %>
+        
+     
+
+
 </div>

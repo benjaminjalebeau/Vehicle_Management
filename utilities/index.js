@@ -28,15 +28,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-/* ************************
- * Gets account name and return it
- ************************** */
-Util.getName = async function (req, res, next) {
-  let data = await accModel.getAccountName()
-  let accountName = data[0]
-  console.log("account name: " + accountName)
-  return accountName
-}
 
 /* **************************************
 * Build the classification view HTML
@@ -158,5 +149,33 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+  /* ****************************************
+ *  Sets account name as null or as the logged in name.
+ * ************************************ */
+  Util.checkLoginName = (locals) => {
+    let accountName = null;
+    if (locals.loggedin) {
+      accountName = locals.accountData.account_firstname
+    } 
+    return accountName
+   }
+
+
+    /* ****************************************
+ *  Checks if logged into an authorized account.
+ * ************************************ */
+ Util.checkAccountType = (req, res, next) => {
+  if (res.locals.loggedin) {
+    if (res.locals.accountData.account_type === "Employee" || res.locals.accountData.account_type === "Admin") {
+      next()
+    } else {
+      req.flash("notice", "Access denied, login with an authorized account or request account change")
+      return res.redirect("/account/login")
+    }
+  } else{
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
 
 module.exports = Util

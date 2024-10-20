@@ -46,6 +46,28 @@ header div{
   font-weight: lighter;
   font-size: 1rem;
   padding-right: .5em;
+  width: 190px;
+  text-align: right;
+}
+
+#logoutbutton{
+  background: none;
+  border: none;
+  font-size: 1.1em;
+  padding: 0;
+  font-weight: 100;
+}
+
+#logoutbutton:hover{
+  color: teal;
+  text-decoration: underline;
+}
+
+
+
+#tools a:hover{
+  color: teal;
+  text-decoration: underline;
 }
 
 /* Nav */
@@ -419,6 +441,32 @@ td {
   text-align: left;
 }
 
+/*Account View*/
+#accountView{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin-bottom: 1em;
+
+}
+
+#accountView h1{
+  font-size: 2.5em;
+
+}
+
+#accountView h2{
+  margin-top: 2em;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+
+}
+
+#accountView h3{
+  margin-top: 2em;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
 
 
 @media only screen and (min-width: 1028px) {
@@ -427,6 +475,11 @@ td {
     margin-top: 1em;
     margin-bottom: 1em;
   }
+
+  header div{
+    width: 300px;
+  }
+
   main{
     display: grid;
     grid-template-columns: 50% 50%;

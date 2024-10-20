@@ -2,7 +2,20 @@
     <span class="siteName">
       <a href="/" title="Return to home page">CSE Motors</a>
     </span>
-    <div id="tools">
-      <a title="Click to log in" href="/account/login">My Account</a>
-    </div>
+    <% if (accountName) { %>
+      <div id="tools">
+        <a title="Click to go to Account Page" href="/account">Welcome <%- accountName%></a>
+        
+        <form action="/account/logout" method="post"><input id="logoutbutton" type="submit" value="Logout"></form>
+      </div>
+     <% } else{%>
+      <div id="tools">
+        <a title="Click to log in" href="/account/login">My Account</a>
+      
+      </div>
+    <% } %>
+    
   </header>
+
+
+  

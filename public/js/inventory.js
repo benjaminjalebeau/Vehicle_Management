@@ -13,8 +13,7 @@
    } 
    throw Error("Network response was not OK"); 
   }) 
-  .then(function (data) { 
-   console.log(data); 
+  .then(function (data) {  
    buildInventoryList(data); 
   }) 
   .catch(function (error) { 

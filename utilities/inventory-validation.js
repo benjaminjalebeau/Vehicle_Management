@@ -122,10 +122,12 @@ const utilities = require(".")
       errors = validationResult(req)
       if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
+        const accountName = utilities.checkLoginName(res.locals)
         res.render("./inventory/add-classification", {
           errors,
           title: "Add New Classification",
           nav,
+          accountName,
           classification_name,
         })
         return
@@ -153,11 +155,13 @@ const utilities = require(".")
       errors = validationResult(req)
       if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
+        const accountName = utilities.checkLoginName(res.locals)
         let select = await utilities.buildClassificationList()
         res.render("./inventory/add-inventory", {
           errors,
           title: "Add New Vehicle",
           nav,
+          accountName,
           select,
           classification_id,
           inv_make,
@@ -197,11 +201,13 @@ const utilities = require(".")
     errors = validationResult(req)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
+      const accountName = utilities.checkLoginName(res.locals)
       let select = await utilities.buildClassificationList()
       res.render("./inventory/edit-inventory", {
         errors,
         title: "Edit " + inv_make + " " + inv_model,
         nav,
+        accountName,
         select,
         inv_id,
         classification_id,
