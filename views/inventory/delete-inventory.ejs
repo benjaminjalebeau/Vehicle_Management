@@ -1,0 +1,44 @@
+<div class="baseView">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+        <% } else {
+        res.redirect('/')
+        } %>
+
+<%- messages() %>
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+  <p>Confirm Deletion - The delete is permanent.</p>
+
+    <div class="formBox" id="addVehicleBox">
+        <form id="deleteForm" action="/inv/delete" method="post">
+            <label for="classification_id">Classification</label><br>
+            
+            <label for="inv_make">Vehicle Make</label><br>
+            <input class="inputBox" type="text" name="inv_make" id="inv_make" readonly value="<%= locals.inv_make %>"><br>
+            
+            <label for="inv_model">Vehicle Model</label><br>
+            <input class="inputBox" type="text" name="inv_model" id="inv_model" readonly value="<%= locals.inv_model %>"><br>
+            
+            <label for="inv_year">Vehicle Year</label><br>
+            <input class="inputBox" type="number" name="inv_year" id="inv_year" readonly size="4" maxlength="4" value="<%= locals.inv_year %>"><br>
+            
+            <label for="inv_price">Vehicle Price</label><br>
+            <input class="inputBox" type="number" name="inv_price" id="inv_price" readonly minlength="1" value="<%= locals.inv_price %>"><br>
+            
+            <div id="buttonHolder">
+                <input id="deleteButton" class="formButton" type="submit" value="Delete Vehicle">
+            </div>
+            <input type="hidden" name="inv_id"
+            <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+        </form>
+    </div>
+
+</div>

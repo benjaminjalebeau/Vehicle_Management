@@ -81,12 +81,12 @@ const accountModel = require("../models/account-model")
         body("account_password")
           .trim()
           .notEmpty()
-          .custom(async (account_password, account_email) => {
-            const passwordExists = await accountModel.checkExistingpassword(account_password, account_email)
-            if (!passwordExists){
-              throw new Error("A matching password is required")
-            }
-          })
+          //.custom(async (account_password, account_email) => {
+          //  const passwordExists = await accountModel.checkExistingpassword(account_password, account_email)
+          //  if (!passwordExists){
+          //   throw new Error("A matching password is required")
+          //  }
+          //})
           .withMessage("Incorrect Password, try again."),
       ]
     }

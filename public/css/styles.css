@@ -309,6 +309,7 @@ footer{
   border-style: double;
   border-width: 10px;
   border-color: lightblue;
+  margin: auto;
 }
 
 .formBox form>*{
@@ -400,6 +401,26 @@ footer{
   font-size: 1.1em;
 }
 
+#inventoryDisplay {
+  margin: auto;
+  width: 100%;
+  border-spacing: 5px;
+}
+
+td {
+  padding: .5em;
+}
+
+#inventoryDisplay thead{
+  text-align: left;
+}
+
+#inventoryDisplay tbody{
+  text-align: left;
+}
+
+
+
 @media only screen and (min-width: 1028px) {
   #wrapper{
     width: 900px;
@@ -424,6 +445,8 @@ footer{
   .upgradeGrid{
     width: 400px;
   }
+
+
 
   /*Inventory View*/
   #inventory-view{

@@ -6,11 +6,26 @@ const utilities = require("../utilities/")
 const regValidate = require('../utilities/inventory-validation')
 
 
-//Route to managment page and the pages to add classification or vehicles
+//Routes to build views
 router.get("/", utilities.handleErrors(invController.buildVehManView))
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddVehView))
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassView))
+router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
+router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
 
+//Route to get inventory from classification_id, and coverts it to json.
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+//Route for editing vehicles view
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditView))
+//Route for deleting a vehicle view
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildConfirmationView))
+
+//Route for Updating a vehicle
+router.post("/update/", utilities.handleErrors(invController.updateInventory))
+
+//Route for Deleting a vehicle
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
 //Post route for adding new classifications
 router.post(
     "/add-classification",
@@ -27,9 +42,8 @@ router.post(
     utilities.handleErrors(invController.registerInventory)
   );
 
-// Route to build inventory by classification view
-router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
-router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
+
+
 
 
 
