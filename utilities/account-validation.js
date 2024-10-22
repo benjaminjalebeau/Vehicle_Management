@@ -119,7 +119,15 @@ const accountModel = require("../models/account-model")
       .notEmpty()
       .isEmail()
       .normalizeEmail() // refer to validator.js docs
-      .withMessage("A valid email is required."),
+      .withMessage("A valid email is required.")
+      .custom(async (account_email, {req}) => {
+
+        const accountId = req.body.account_id
+        const emailExists = await accountModel.checkOtherEmail(account_email, accountId)
+        if (emailExists){
+          throw new Error("Another account already has this email, try a different one.")
+        }
+      }),
     ]
   }
 
