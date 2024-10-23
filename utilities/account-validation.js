@@ -264,18 +264,14 @@ validate.checkLogData = async (req, res, next) => {
       errors = validationResult(req)
       if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
+        let select = await utilities.buildAccountList()
         const accountName = utilities.checkLoginName(res.locals)
-        const accountType = res.locals.accountData.account_type
-        res.render("account/update-account", {
-          title: "Edit Your Account",
+        res.render("account/update-account-types", {
+          title: "Authorization Management",
           nav,
           accountName,
-          accountType,
+          select,
           errors,
-          account_firstname,
-          account_lastname,
-          account_email,
-          account_id
         })
         return
       }
