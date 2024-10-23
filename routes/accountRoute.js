@@ -15,6 +15,8 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 // Route to build Account Update View
 router.get("/update-account", utilities.handleErrors(accountController.buildAccountUpdateView));
+// Route to build Account Update Type View
+router.get("/update-account-types", utilities.checkAdmin, utilities.handleErrors(accountController.buildAccountUpdateTypeView));
 
 // Route to Register the Client
 router.post(
@@ -51,5 +53,13 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 )
 
+// Route to update account info
+router.post(
+  "/update-account-types",
+  regValidate.accountTypeRules(),
+  regValidate.checkAccountTypeData,
+  utilities.handleErrors(accountController.updateAccountType)
+)
+//
 
 module.exports = router;

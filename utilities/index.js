@@ -90,7 +90,7 @@ Util.buildInventoryGrid = async function(data){
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   let classificationList =
-    '<select name="classification_id" id="classificationList" required>'
+    '<select name="classification_id" id="classificationList" class="selectList" required>'
   classificationList += "<option value=''>Choose a Classification</option>"
   data.rows.forEach((row) => {
     classificationList += '<option value="' + row.classification_id + '"'
@@ -104,6 +104,28 @@ Util.buildClassificationList = async function (classification_id = null) {
   })
   classificationList += "</select>"
   return classificationList
+}
+
+/* **************************************
+* Builds the select form element using stored accounts in the database
+* ************************************ */
+Util.buildAccountList = async function (account_id = null) {
+  let data = await accModel.getAccounts()
+  let accountList =
+    '<select name="account_id" id="accountList" class="selectList" required>'
+  accountList += "<option value=''>Choose an Account</option>"
+  data.rows.forEach((row) => {
+    accountList += '<option value="' + row.account_id + '"'
+    if (
+      account_id != null &&
+      row.account_id == account_id
+    ) {
+      accountList += " selected "
+    }
+    accountList += ">" + row.account_email +" - " + row.account_type + "</option>"
+  })
+  accountList += "</select>"
+  return accountList
 }
 
 
@@ -177,5 +199,22 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+     /* ****************************************
+ *  Checks if logged into an Admin account.
+ * ************************************ */
+     Util.checkAdmin = (req, res, next) => {
+      if (res.locals.loggedin) {
+        if (res.locals.accountData.account_type === "Admin") {
+          next()
+        } else {
+          req.flash("notice", "Access denied, login with an authorized account or request account change")
+          return res.redirect("/account/login")
+        }
+      } else{
+        req.flash("notice", "Please log in.")
+        return res.redirect("/account/login")
+      }
+     }
 
 module.exports = Util

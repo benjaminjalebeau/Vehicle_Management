@@ -4,7 +4,7 @@
         <% } else {
         res.redirect('/')
         } %>
-    <p>You're logged in</p>
+    <p>You're logged in - Authorization: <%= accountType%></p>
 
     <%- messages() %>
     <% if (errors) { %>
@@ -20,6 +20,11 @@
       <% if (accountType === "Admin" || accountType === "Employee") { %>
         <h3>Inventory Management</h3>
         <a href="/inv">Manage Inventory</a>
+      <% } %>
+
+      <% if (accountType === "Admin" ) { %>
+        <h3>Account Authorization Management</h3>
+        <a href="/account/update-account-types">Managage Account Types</a>
       <% } %>
         
      

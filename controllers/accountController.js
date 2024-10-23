@@ -179,6 +179,22 @@ async function buildAccountUpdateView(req, res, next) {
   })
 }
 
+/* ****************************************
+*  Deliver account update type view
+* *************************************** */
+async function buildAccountUpdateTypeView(req, res, next) {
+  let nav = await utilities.getNav()
+  const accountName = utilities.checkLoginName(res.locals)
+  let select = await utilities.buildAccountList()
+  res.render("account/update-account-types", {
+    title: "Authorization Management",
+    nav,
+    select,
+    accountName,
+    errors: null
+  })
+}
+
 
 /* ****************************************
  *  Process account Update
@@ -219,6 +235,45 @@ async function updateAccount(req, res) {
         account_lastname,
         account_email,
         account_id
+      })
+    }
+  } 
+
+
+  /* ****************************************
+ *  Process account Update Type
+ * ************************************ */
+async function updateAccountType(req, res) {
+  let nav = await utilities.getNav()
+  const accountName = utilities.checkLoginName(res.locals)
+  let select = await utilities.buildAccountList()
+  
+  const { 
+    account_type, 
+    account_id
+  } = req.body
+  const data = await accountModel.getAccountById(account_id);
+  const updateAccountEmail = data.account_email;
+  const updateResult = await accountModel.updateAccountType(
+    account_type,
+    account_id
+  )
+  if (updateResult) {
+    req.flash(
+      "notice",
+      `Success, you've changed the authorization for the account registered to ${updateAccountEmail} to
+       ${account_type}.`
+    )
+    res.redirect("/account")
+    return
+  }else {
+      req.flash("message notice", "Authorization could not be updated, try again.")
+      res.status(501).render("account/update-account-types", {
+        title: "Authorization Management",
+        nav,
+        select,
+        accountName,
+        errors: null
       })
     }
   } 
@@ -289,5 +344,6 @@ async function updatePassword(req, res) {
   module.exports = { 
     buildLogin, buildRegister, registerAccount,
     accountLogin, buildAccountView, buildAccountUpdateView, 
-    updateAccount, updatePassword, accountLogout
+    updateAccount, updatePassword, accountLogout, 
+    buildAccountUpdateTypeView, updateAccountType
   }

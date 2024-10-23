@@ -1,0 +1,37 @@
+<div class="baseView">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+        <% } else {
+        res.redirect('/')
+        } %>
+
+    <%- messages() %>
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+    <div class="formBox">
+        <form action="/account/update-account-types" method="post">
+            <!--<label for="account_email">Email for account to be updated</label><br>
+            <input class="inputBox" type="email" id="account_email" name="account_email" required value="<%#= locals.account_email %>"><br>-->
+            <label for="account_id">Email for account to be updated</label><br>
+            <%- select %><br>
+
+            <label for="account_type">Which type would you like to change the account to?</label>
+            <select class="selectList" name="account_type" required >
+                <option value="">Select an account type</option>
+                <option value="Client">Client</option>
+                <option value="Employee">Employee</option>
+                <option value="Admin">Admin</option>
+            </select>
+                
+            <div id="buttonHolder">
+                <input class="formButton" type="submit" value="Update Authorization">
+            </div>
+        </form>
+    </div>
+</div>
+

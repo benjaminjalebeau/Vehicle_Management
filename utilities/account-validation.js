@@ -152,6 +152,33 @@ const accountModel = require("../models/account-model")
     ]
   }
 
+    /*  **********************************
+  *  Update Account Type Validation Rules
+  * ********************************* */
+    validate.accountTypeRules = () => {
+      return [
+        // Make sure an account is sekected
+        body("account_id")
+        .trim()
+        .escape()
+        .notEmpty()
+        .custom(async (account_id) => {
+          if (!account_id){
+            throw new Error("Please select an account.")
+          }
+        }),
+        // Make sure a account type is selected
+        body("account_type")
+        .trim()
+        .escape()
+        .notEmpty()
+        .custom(async (account_type) => {
+          if (!account_type){
+            throw new Error("Please select an account type.")
+          }
+        })
+      ]
+    }
 
 
   /* ******************************
@@ -227,5 +254,32 @@ validate.checkLogData = async (req, res, next) => {
     }
     next()
   }
+
+    /* ******************************
+ * Check data and return errors for account update
+ * ***************************** */
+    validate.checkAccountTypeData = async (req, res, next) => {
+      const { account_firstname, account_lastname, account_email, account_id } = req.body
+      let errors = []
+      errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        const accountName = utilities.checkLoginName(res.locals)
+        const accountType = res.locals.accountData.account_type
+        res.render("account/update-account", {
+          title: "Edit Your Account",
+          nav,
+          accountName,
+          accountType,
+          errors,
+          account_firstname,
+          account_lastname,
+          account_email,
+          account_id
+        })
+        return
+      }
+      next()
+    }
 
   module.exports = validate

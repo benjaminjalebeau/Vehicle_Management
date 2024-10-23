@@ -416,7 +416,7 @@ footer{
   color: cyan;
 }
 
-#classificationList {
+.selectList{
   border-radius: 6px;
   width: 100%;
   padding: .3em .1em;
