@@ -16,7 +16,8 @@ If you'd like to test all aspects of the website, you'll need to be logged into 
 - account_email: basic@340.edu
 - account_password: I@mABas1cCl!3nt
 
-# Employee User Credentials - Can update/manage/add vehicle Items
+# Employee User Credentials
+- Can update/manage/add vehicle Items
 - account_email: happy@340.edu
 - account_password: I@mAnEmpl0y33
 
